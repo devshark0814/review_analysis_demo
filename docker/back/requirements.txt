@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+aiomysql
+mysqlclient
+selenium
+mecab-python3
+nlplot

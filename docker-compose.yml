@@ -1,0 +1,46 @@
+version: '3.7'
+
+services:
+  selenium-hub:
+    # image: selenium/hub:4.0.0
+    # VNC接続用
+    image: selenium/hub:3.141
+    ports:
+      - 4444:4444
+      - 4442:4442
+      - 4443:4443
+
+  chrome:
+    # VNC接続用(4系だとVNCがうまく動かないらしい)
+    image: selenium/node-chrome-debug:3.141
+    container_name: 'chrome'
+    ports:
+      - 5900:5900
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - TZ=Asia/Tokyo
+      - HUB_HOST=selenium-hub
+      # hubとの接続で必要
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      # 同時実行数を増やす場合に設定を行う
+      # - SE_NODE_MAX_SESSIONS=2
+      # - SE_NODE_OVERRIDE_MAX_SESSIONS=true
+
+  back:
+    container_name: back
+    build:
+      context: .
+      dockerfile: ./docker/back/Dockerfile
+    links:
+      - selenium-hub:hub
+    volumes:
+      - ./fast-app:/app
+    ports:
+      - 3000:3000
+    restart: always
+    tty: true
