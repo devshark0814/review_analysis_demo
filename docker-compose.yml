@@ -2,20 +2,21 @@ version: '3.7'
 
 services:
   selenium-hub:
-    # image: selenium/hub:4.0.0
+    image: selenium/hub:4.0.0
     # VNC接続用
-    image: selenium/hub:3.141
+    # image: selenium/hub:3.141
     ports:
       - 4444:4444
       - 4442:4442
       - 4443:4443
 
   chrome:
+    image: selenium/node-chrome:4.0.0
     # VNC接続用(4系だとVNCがうまく動かないらしい)
-    image: selenium/node-chrome-debug:3.141
+    # image: selenium/node-chrome-debug:3.141
+    # ports:
+    #   - 5900:5900
     container_name: 'chrome'
-    ports:
-      - 5900:5900
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
