@@ -4,7 +4,7 @@ import Vue from "vue";
 const apiClient = $axios.create({
     baseURL: 'http://localhost:3000',
     headers: { 'Content-Type': 'application/json' },
-    timeout: 5000, // milliseconds
+    timeout: 60000, // milliseconds
 });
 //共通レスポンス処理
 apiClient.interceptors.response.use(
@@ -21,8 +21,8 @@ apiClient.interceptors.response.use(
             default:
             // 例外処理
             Vue.toasted.error(error,{
-                theme: "bubble", 
-                position: "top-center", 
+                theme: "bubble",
+                position: "top-center",
                 duration : 5000
             });
         }

@@ -1,5 +1,5 @@
 from selenium.webdriver.common import by
-from WebScraping import WebScraping
+from .WebScraping import WebScraping
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
@@ -35,12 +35,14 @@ class WebScrapingRakuten(WebScraping):
         # データフォーマットのカラム定義
         # columns = ['review_comment']
         # df = pd.DataFrame(columns=columns)
-        columns = ['date', 'score', 'text', 'age', 'sex']
+        columns = ['date', 'score', 'text', 'age', 'sex', 'url']
         df = pd.DataFrame(columns=columns)
 
         for i in range(page_num):
             base_url = self.get_shohin_review_url()
-            browser.get(base_url + str(i + 1) + '.1/sort6/')
+            url = base_url + str(i + 1) + '.1/sort6/'
+            browser.get(url)
+            time.sleep(2)
 
             reviews = browser.find_elements(by=By.CSS_SELECTOR, value="div.revRvwUserSec")
 
@@ -55,15 +57,7 @@ class WebScrapingRakuten(WebScraping):
                 date = review.find_element(by=By.CSS_SELECTOR, value="span.revUserEntryDate.dtreviewed").text
                 score = review.find_element(by=By.CSS_SELECTOR, value="span.revUserRvwerNum.value").text
                 text = review.find_element(by=By.CSS_SELECTOR, value="dd.revRvwUserEntryCmt.description").text.replace('\n','')
-                se = pd.Series([date, score, text, age, sex], columns)
+                se = pd.Series([date, score, text, age, sex, url], columns)
                 df = df.append(se, columns)
-
-            # for j in range(1,16):
-            #     val = f'//*[@id="revRvwSec"]/div[1]/div/div[2]/div[{j}]/div[2]/div[2]/div/dl/dd[1]'
-            #     elem = browser.find_element(by=By.XPATH, value=val)
-            #     review_comment = elem.text.replace('\n','')
-            #     se = pd.Series([review_comment], columns)
-            #     df = df.append(se, columns)
-            time.sleep(2)
         browser.quit()
         return df
