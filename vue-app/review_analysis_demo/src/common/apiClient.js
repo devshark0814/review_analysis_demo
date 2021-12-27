@@ -4,7 +4,7 @@ import Vue from "vue";
 const apiClient = $axios.create({
     baseURL: 'http://localhost:3000',
     headers: { 'Content-Type': 'application/json' },
-    timeout: 60000, // milliseconds
+    // timeout: 60000, // milliseconds
 });
 //共通レスポンス処理
 apiClient.interceptors.response.use(

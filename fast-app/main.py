@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from typing import List  # ネストされたBodyを定義するために必要
 from starlette.middleware.cors import CORSMiddleware
-from routers import scraping
+from routers import scraping, analysis
 
 app = FastAPI()
 
@@ -14,3 +14,4 @@ app.add_middleware(
 )
 
 app.include_router(scraping.router, prefix="/api/scraping", tags=["scraping"])
+app.include_router(analysis.router, prefix="/api/analysis", tags=["analysis"])
