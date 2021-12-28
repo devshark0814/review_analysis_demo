@@ -25,4 +25,4 @@ async def get_rakuten_analysis():
     print(word_arr)
     print(word_count_arr)
 
-    return {"message": "analysis.index()", "datas" : word_count_arr}
+    return {"message": "分析完了！", "datas" : word_count_arr}
