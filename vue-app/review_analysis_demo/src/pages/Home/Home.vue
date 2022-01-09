@@ -31,10 +31,6 @@
                             <v-col cols="2">
                                 <v-btn color="primary" @click="doClick" :disabled="!valid" :loading="loading">スクレイピング実行</v-btn>
                             </v-col>
-                            <v-spacer />
-                            <v-col cols="1">
-                                <v-btn color="primary" @click="doAnalysis" :disabled="!valid" :loading="loading">分析実行</v-btn>
-                            </v-col>
                         </v-row>
                     </v-form>
                 </v-col>
@@ -48,11 +44,6 @@
                         class="elevation-1"
                         :footer-props="{ 'items-per-page-options': [50, 100, 200, -1] }"
                     ></v-data-table>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col>
-                    <apexchart ref="chart" type="bar" :options="chartOptions" :series="series"></apexchart>
                 </v-col>
             </v-row>
         </v-container>

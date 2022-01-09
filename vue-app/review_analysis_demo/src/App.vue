@@ -1,14 +1,16 @@
 <template>
   <div id="app">
-    <v-app>
-      <router-view/>
-    </v-app>
+      <navigation />
   </div>
 </template>
 
 <script>
+import navigation from './components/Navigation.vue';
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    navigation
+  }
 }
 </script>
 
