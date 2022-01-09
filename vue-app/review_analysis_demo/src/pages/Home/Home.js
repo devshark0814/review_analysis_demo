@@ -4,8 +4,8 @@ export default {
         return{
             loading: false,
             valid: false,
-            shohin_id: "212142_10126692",          // 対象の商品ID
-            repeat: 1,              // 繰り返し回数
+            shohin_id: "212142_10126692",           // 対象の商品ID
+            repeat: 1,                              // 繰り返し回数
 
             headers:[
                 {text: "日付", align: "right", value: "date" ,width:"10%"},
@@ -18,15 +18,27 @@ export default {
 
             chartOptions: {
                 chart: {
-                    id: 'vuechart-example'
+                    type: 'bar',
+                    id: 'vuechart-example',
+                    height: 1000
+                },
+                plotOptions: {
+                    bar: {
+                        borderRadius: 4,
+                        horizontal: true,
+                        barHeight: '80%',
+                    }
+                },
+                dataLabels: {
+                    enabled: true
                 },
                 xaxis: {
-                    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+                    categories: []
                 }
             },
             series: [{
                 name: 'series-1',
-                data: [30, 40, 35, 50, 49, 60, 70, 91]
+                data: []
             }]
         }
     },
@@ -48,7 +60,23 @@ export default {
             this.loading = true;
             const response = await this.$apiClient.post("/api/analysis/get_rakuten_analysis");
             console.log(response);
-            // this.datas = response.data.datas;
+            let yData = response.data.datas.key_arr;
+            let xData = response.data.datas.val_arr;
+
+            this.$refs.chart.updateSeries([
+                {
+                    name: 'sales',
+                    data: xData,
+                },
+            ]);
+
+            this.$refs.chart.updateOptions({
+                    xaxis: {
+                        categories: yData
+                    }
+            });
+
+
             this.$toasted.success(response.data.message, $CommonJs.getSuccessToastOptions());
             this.loading = false;
         }

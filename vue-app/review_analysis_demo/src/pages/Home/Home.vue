@@ -52,7 +52,7 @@
             </v-row>
             <v-row>
                 <v-col>
-                    <apexchart width="500" type="bar" :options="chartOptions" :series="series"></apexchart>
+                    <apexchart ref="chart" type="bar" :options="chartOptions" :series="series"></apexchart>
                 </v-col>
             </v-row>
         </v-container>
