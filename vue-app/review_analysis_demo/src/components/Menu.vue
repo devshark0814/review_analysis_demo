@@ -15,6 +15,13 @@
 
                 <v-list-item-title>分析</v-list-item-title>
             </v-list-item>
+            <v-list-item @click="clickWordCloud">
+                <v-list-item-icon>
+                    <v-icon>mdi-view-week</v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-title>ワードクラウド</v-list-item-title>
+            </v-list-item>
         </v-list>
     </v-card>
 </template>
@@ -32,6 +39,9 @@ export default {
         clickAnalysis() {
             this.$router.push("/analysis");
         },
+        clickWordCloud() {
+            this.$router.push("/wordCloud");
+        }
     }
 }
 </script>

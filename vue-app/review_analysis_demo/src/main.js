@@ -9,6 +9,7 @@ import axios from "axios"; //追記
 import VueAxios from "vue-axios"; //追記
 import apiClient from "./common/apiClient";
 import VueApexCharts from 'vue-apexcharts';
+import VueWordCloud from 'vuewordcloud';
 
 Vue.config.productionTip = false
 
@@ -17,6 +18,7 @@ Vue.use(VueAxios, axios); //追記
 Vue.use(VueApexCharts);
 
 Vue.component('apexchart', VueApexCharts);
+Vue.component(VueWordCloud.name, VueWordCloud);
 
 Vue.prototype.$apiClient = apiClient;
 
