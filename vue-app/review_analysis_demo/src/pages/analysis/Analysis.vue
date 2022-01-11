@@ -1,6 +1,6 @@
 <template>
-    <v-container>
-        <v-row>
+    <v-container class="pa-0">
+        <v-row dence>
             <v-col cols="1">
                 <v-btn color="primary" @click="doAnalysis" :loading="loading">分析実行</v-btn>
             </v-col>

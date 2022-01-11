@@ -45,17 +45,4 @@ async def get_rakuten_analysis_word_cloud():
     c = collections.Counter(word_arr)
     word_count_arr = c.most_common()
 
-    key_arr = []
-    val_arr = []
-
-    for word_count in word_count_arr:
-        key_arr.append(word_count[0])
-        val_arr.append(word_count[1])
-
-    print(word_count_arr)
-
-    datas = {}
-    datas['key_arr'] = key_arr[:50]
-    datas['val_arr'] = val_arr[:50]
-
-    return {"message": "分析完了", "datas" : datas}
+    return {"message": "分析完了", "datas" : word_count_arr}
