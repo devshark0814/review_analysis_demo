@@ -1,7 +1,7 @@
 <template>
     <v-container class="pa-0">
         <v-row dence>
-            <v-col cols="1">
+            <v-col cols="1" class="mt-3">
                 <v-btn color="primary" @click="doAnalysis" :loading="loading">分析実行</v-btn>
             </v-col>
         </v-row>

@@ -4,7 +4,7 @@
             <menucomponent />
         </v-navigation-drawer>
 
-        <v-main>
+        <v-main style="background-color: #f5f5f5;">
             <router-view />
         </v-main>
     </v-app>
