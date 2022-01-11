@@ -7,7 +7,7 @@ export default {
                 chart: {
                     type: 'bar',
                     id: 'vuechart-example',
-                    height: 1000
+                    height: '500px'
                 },
                 plotOptions: {
                     bar: {
@@ -40,7 +40,7 @@ export default {
 
             this.$refs.chart.updateSeries([
                 {
-                    name: 'sales',
+                    name: '出現回数',
                     data: xData,
                 },
             ]);

@@ -1,23 +1,41 @@
 <template>
-    <v-container class="pa-0">
-        <v-row dence>
-            <v-col cols="1">
-                <v-btn color="primary" @click="doAnalysis">分析実行</v-btn>
-            </v-col>
-        </v-row>
-        <v-row dence>
-            <v-col>
-                <vue-word-cloud
-                    style="
-                        height: 1000px;
-                        width: 1500px;
-                    "
-                    :words="words"
-                    :color="([, weight]) => weight > 10 ? 'DeepPink' : weight > 5 ? 'RoyalBlue' : 'Indigo'"
-                    font-family="Roboto"
-                />
-            </v-col>
-        </v-row>
-    </v-container>
+    <div style="height:100%">
+        <!-- <v-btn color="primary" @click="doAnalysis">分析実行</v-btn> -->
+        <v-container
+            fill-height
+            overflow-hidden
+            id="container_word_cloud"
+        >
+            <div class="parent_box">
+                <div class="child_box">
+                    <vue-word-cloud
+                        :words="words"
+                        :color="([, weight]) => weight > 10 ? 'DeepPink' : weight > 5 ? 'RoyalBlue' : 'Indigo'"
+                        font-family="Anton"
+                        :animation-duration="1000"
+                        animation-easing="ease"
+                        :animation-overlap="5"
+                        :font-size-ratio="4"
+                        :spacing="0.2"
+                    />
+                </div>
+            </div>
+        </v-container>
+    </div>
 </template>
 <script src="./WordCloud.js"></script>
+<style>
+#container_word_cloud .parent_box {
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+#container_word_cloud .parent_box .child_box {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition-duration: 1s;
+}
+</style>
