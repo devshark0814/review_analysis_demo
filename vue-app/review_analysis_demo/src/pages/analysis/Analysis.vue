@@ -6,8 +6,21 @@
             </v-col>
         </v-row>
         <v-row>
-            <v-col>
-                <apexchart ref="chart" type="bar" height="850px" :options="chartOptions" :series="series"></apexchart>
+            <v-col cols="6">
+                <div>
+                    <span>名詞のグラフ</span>
+                    <apexchart ref="chart_meishi" type="bar" height="600px" width="800px" :options="chartOptions" :series="seriesMeishi"></apexchart>
+                </div>
+            </v-col>
+            <v-col cols="6">
+                <span>動詞のグラフ</span>
+                <apexchart ref="chart_doushi" type="bar" height="600px" width="800px" :options="chartOptions" :series="seriesDoushi"></apexchart>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col cols="6">
+                <span>形容詞のグラフ</span>
+                <apexchart ref="chart_keiyoushi" type="bar" height="600px" width="800px" :options="chartOptions" :series="seriesKeiyoushi"></apexchart>
             </v-col>
         </v-row>
     </v-container>

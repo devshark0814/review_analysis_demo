@@ -11,12 +11,12 @@
                     <vue-word-cloud
                         :words="words"
                         :color="([, weight]) => weight > 10 ? 'DeepPink' : weight > 5 ? 'RoyalBlue' : 'Indigo'"
-                        font-family="Anton"
-                        :animation-duration="1000"
+                        font-family="游ゴシック"
+                        :animation-duration="5000"
                         animation-easing="ease"
                         :animation-overlap="5"
-                        :font-size-ratio="4"
-                        :spacing="0.2"
+                        :font-size-ratio="1/3"
+                        :spacing="0.4"
                     />
                 </div>
             </div>

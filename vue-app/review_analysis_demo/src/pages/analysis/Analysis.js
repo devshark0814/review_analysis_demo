@@ -20,10 +20,33 @@ export default {
                     enabled: true
                 },
                 xaxis: {
-                    categories: []
-                }
+                    categories: [],
+                    labels: {
+                        style: {
+                            colors: [],
+                            fontSize: '16px',
+                        },
+                    }
+                },
+                yaxis: {
+                    labels: {
+                        style: {
+                            colors: [],
+                            fontSize: '16px',
+                        },
+                    }
+                },
+                colors: ["#00FF00"]
             },
-            series: [{
+            seriesMeishi: [{
+                name: 'series-1',
+                data: []
+            }],
+            seriesDoushi: [{
+                name: 'series-1',
+                data: []
+            }],
+            seriesKeiyoushi: [{
                 name: 'series-1',
                 data: []
             }]
@@ -35,20 +58,66 @@ export default {
             this.loading = true;
             const response = await this.$apiClient.post("/api/analysis/get_rakuten_analysis");
             console.log(response);
-            let yData = response.data.datas.key_arr;
-            let xData = response.data.datas.val_arr;
+            let meishi_yData = response.data.datas.meishi_y_arr;
+            let meishi_xData = response.data.datas.meishi_x_arr;
 
-            this.$refs.chart.updateSeries([
+            let doushi_yData = response.data.datas.doushi_y_arr;
+            let doushi_xData = response.data.datas.doushi_x_arr;
+
+            let keiyoushi_yData = response.data.datas.keiyoushi_y_arr;
+            let keiyoushi_xData = response.data.datas.keiyoushi_x_arr;
+
+            this.$refs.chart_meishi.updateSeries([
                 {
                     name: '出現回数',
-                    data: xData,
+                    data: meishi_xData,
+                },
+            ]);
+            this.$refs.chart_doushi.updateSeries([
+                {
+                    name: '出現回数',
+                    data: doushi_xData,
+                },
+            ]);
+            this.$refs.chart_keiyoushi.updateSeries([
+                {
+                    name: '出現回数',
+                    data: keiyoushi_xData,
                 },
             ]);
 
-            this.$refs.chart.updateOptions({
-                    xaxis: {
-                        categories: yData
-                    }
+            this.$refs.chart_meishi.updateOptions({
+                title: {
+                    text: '名詞の出現回数',
+                    align: 'center',
+                    floating: true
+                },
+                xaxis: {
+                    categories: meishi_yData,
+                },
+                colors: ["#007bff"]
+            });
+            this.$refs.chart_doushi.updateOptions({
+                title: {
+                    text: '動詞の出現回数',
+                    align: 'center',
+                    floating: true
+                },
+                xaxis: {
+                    categories: doushi_yData,
+                },
+                colors: ["#fd7e14"]
+            });
+            this.$refs.chart_keiyoushi.updateOptions({
+                title: {
+                    text: '形容詞の出現回数',
+                    align: 'center',
+                    floating: true
+                },
+                xaxis: {
+                    categories: keiyoushi_yData,
+                },
+                colors: ["#20c997"]
             });
 
 
