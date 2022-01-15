@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Home from '@/pages/Home/Home.vue'
 import Analysis from '@/pages/Analysis/Analysis.vue'
 import WordCloud from '@/pages/WordCloud/WordCloud.vue'
+import Mecab from '@/pages/Mecab/Mecab.vue'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/wordCloud',
       name: 'WordCloud',
       component: WordCloud
+    },
+    {
+      path: '/mecab',
+      name: 'Mecab',
+      component: Mecab
     }
   ]
 })

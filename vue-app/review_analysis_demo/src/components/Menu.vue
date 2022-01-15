@@ -22,6 +22,13 @@
 
                 <v-list-item-title style="text-align:left">ワードクラウド</v-list-item-title>
             </v-list-item>
+            <v-list-item @click="clickMecab">
+                <v-list-item-icon>
+                    <v-icon>mdi-view-week</v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-title style="text-align:left">形態素解析</v-list-item-title>
+            </v-list-item>
         </v-list>
     </v-card>
 </template>
@@ -41,6 +48,9 @@ export default {
         },
         clickWordCloud() {
             this.$router.push("/wordCloud");
+        },
+        clickMecab() {
+            this.$router.push("/mecab");
         }
     }
 }

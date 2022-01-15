@@ -1,5 +1,9 @@
-import { $CommonJs } from "@/common/common.js";
+import mecab from '@/pages/Mecab/Mecab.vue';
 export default {
+    components : {
+        "com-mecab" : mecab
+    },
+
     data() {
         return{
             headers:[
@@ -10,7 +14,9 @@ export default {
                 {text: "原文", value: "text",          align: "left",  width:"45%"},
                 {text: "校正", value: "remake_text",   align: "left",  width:"45%"},
             ],
-            datas:[]
+            datas:[],
+
+            dialog: false,
         }
     },
 
@@ -22,6 +28,16 @@ export default {
         search: async function() {
             const response = await this.$apiClient.get("/api/analysis/rakuten/get_cleansing_reviews");
             this.datas = response.data;
+        },
+
+        clickRow(rowItem) {
+            this.dialog = true;
+            this.$refs.mecab.simpleAnalysis(rowItem);
+        },
+
+        clickDialogCloseBtn() {
+            this.dialog = false;
+            this.$refs.mecab.dialogClose();
         }
     }
 };
