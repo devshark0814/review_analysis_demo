@@ -3,6 +3,14 @@
         <v-container>
             <v-row>
                 <v-col>
+                    <screen-about-component
+                        screen_title="画面概要"
+                        screen_description="楽天のレビューページ(1ページ15件)をスクレイピング<br/>1ページ：約10秒、2ページ：約13秒ぐらいの処理時間はかかります。"
+                    />
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
                     <v-form
                         ref="form"
                         v-model="valid"

@@ -14,22 +14,22 @@ class WebScrapingRakuten(WebScraping):
 
     BASE_URL = 'https://review.rakuten.co.jp/item/1/'
 
-    """
-    コンストラクタ
-    """
     def __init__(self, shohin_id: str):
+        """
+        コンストラクタ
+        """
         super().__init__(shohin_id=shohin_id)
 
-    """
-    ベースとなるURLを生成
-    """
     def get_shohin_review_url(self):
+        """
+        ベースとなるURLを生成
+        """
         return WebScrapingRakuten.BASE_URL + self.shohin_id + '/'
 
-    """
-    レビューリストを返す
-    """
     def get_reviews(self, page_num: int):
+        """
+        レビューリストを返す
+        """
         browser = self.get_webdriver()
 
         # データフォーマットのカラム定義
@@ -42,7 +42,7 @@ class WebScrapingRakuten(WebScraping):
             base_url = self.get_shohin_review_url()
             url = base_url + str(i + 1) + '.1/sort6/'
             browser.get(url)
-            time.sleep(2)
+            # time.sleep(2)
 
             reviews = browser.find_elements(by=By.CSS_SELECTOR, value="div.revRvwUserSec")
 
@@ -56,7 +56,7 @@ class WebScrapingRakuten(WebScraping):
 
                 date = review.find_element(by=By.CSS_SELECTOR, value="span.revUserEntryDate.dtreviewed").text
                 score = review.find_element(by=By.CSS_SELECTOR, value="span.revUserRvwerNum.value").text
-                text = review.find_element(by=By.CSS_SELECTOR, value="dd.revRvwUserEntryCmt.description").text.replace('\n','')
+                text = review.find_element(by=By.CSS_SELECTOR, value="dd.revRvwUserEntryCmt.description").text.replace('\n','').replace('\uff0d', '-').replace('\uff5e', '-')
                 se = pd.Series([date, score, text, age, sex, url], columns)
                 df = df.append(se, columns)
         browser.quit()

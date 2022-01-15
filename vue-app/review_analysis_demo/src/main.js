@@ -20,6 +20,9 @@ Vue.use(VueApexCharts);
 Vue.component('apexchart', VueApexCharts);
 Vue.component(VueWordCloud.name, VueWordCloud);
 
+
+Vue.component('screen-about-component', require('@/components/ScreenAbout.vue').default);     // 画面概要のコンポーネント
+
 Vue.prototype.$apiClient = apiClient;
 
 /* eslint-disable no-new */

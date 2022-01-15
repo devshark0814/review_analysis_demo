@@ -1,5 +1,10 @@
 import { $CommonJs } from "../../common/common.js";
+import CleansingReviews from "./CleansingReviews/CleansingReviews.vue";
 export default {
+    components: {
+        "com-cleansing-reviews": CleansingReviews
+    },
+
     data() {
         return{
             loading: false,
@@ -55,8 +60,12 @@ export default {
 
     methods: {
         doAnalysis: async function() {
+            // 子コンポーネントの検索実施
+            this.$refs.cleansing_reviews.search();
+
+            // グラフのデータを検索してグラフ更新
             this.loading = true;
-            const response = await this.$apiClient.post("/api/analysis/get_rakuten_analysis");
+            const response = await this.$apiClient.get("/api/analysis/rakuten/get_reviews_word_count");
             console.log(response);
             let meishi_yData = response.data.datas.meishi_y_arr;
             let meishi_xData = response.data.datas.meishi_x_arr;

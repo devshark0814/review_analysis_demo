@@ -9,11 +9,17 @@ router = APIRouter()
 
 @router.post("/")
 async def index():
+    """
+    index
+    """
     return {"message": "scraping.index()"}
 
-# @router.post("/getReviews", response_model=ScrapingResult)
 @router.post("/getReviews")
 async def getReviews(req: ScrapingSettingRakuten):
+    """
+    商品IDを元に楽天のレビューページをスクレイピング<br>
+    結果をCSVに保存
+    """
     shohin_id = req.shohin_id
     repeat = req.repeat
 

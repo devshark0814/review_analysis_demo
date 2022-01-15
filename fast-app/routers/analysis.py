@@ -5,17 +5,30 @@ import pandas as pd
 from Services.MeCab.MeCab import mecab_text
 from Services.Analysis.Analysis import Analysis
 import itertools
-import collections
-from collections import defaultdict
 
 router = APIRouter()
 
-@router.post("/")
+@router.get("/")
 async def index():
+    """
+    index
+    """
     return {"message": "analysis.index()"}
 
-@router.post("/get_rakuten_analysis")
-async def get_rakuten_analysis():
+@router.get("/get_cleansing_reviews")
+async def get_cleansing_reviews():
+    """
+    データクレンジングしたレビュー結果を返す
+    """
+    df = Analysis.read_csv_data()
+    json = df.to_dict(orient='index')
+    value_list = json.values()
+    value_list = list(value_list)
+
+    return value_list
+
+@router.get("/get_reviews_word_count")
+async def get_reviews_word_count():
     """
     楽天のレビューを形態素解析して、品詞ごとに出現回数をセットして返す
     """
@@ -45,8 +58,11 @@ async def get_rakuten_analysis():
 
     return {"message": "分析完了", "datas" : datas}
 
-@router.post("/get_rakuten_analysis_word_cloud")
-async def get_rakuten_analysis_word_cloud():
+@router.get("/get_word_cloud")
+async def get_word_cloud():
+    """
+    ワードクラウド用のデータを集計して返す
+    """
     df = Analysis.read_csv_data()
     # レビュー毎に二次元配列に形態素解析結果が入っている
     two_dic = df['remake_text'].apply(mecab_text)

@@ -14,4 +14,4 @@ app.add_middleware(
 )
 
 app.include_router(scraping.router, prefix="/api/scraping", tags=["scraping"])
-app.include_router(analysis.router, prefix="/api/analysis", tags=["analysis"])
+app.include_router(analysis.router, prefix="/api/analysis/rakuten", tags=["analysis/rakuten"])
