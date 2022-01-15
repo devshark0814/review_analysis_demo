@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import Home from '@/pages/Home/Home'
+import Home from '@/pages/Home/Home.vue'
+import Analysis from '@/pages/Analysis/Analysis.vue'
+import WordCloud from '@/pages/WordCloud/WordCloud.vue'
+import Mecab from '@/pages/Mecab/Mecab.vue'
 
 Vue.use(Router)
 
@@ -17,6 +20,21 @@ export default new Router({
       path: '/home',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/analysis',
+      name: 'Analysis',
+      component: Analysis
+    },
+    {
+      path: '/wordCloud',
+      name: 'WordCloud',
+      component: WordCloud
+    },
+    {
+      path: '/mecab',
+      name: 'Mecab',
+      component: Mecab
     }
   ]
 })
